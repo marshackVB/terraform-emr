@@ -2,7 +2,6 @@
 variable "vpc_id" {
     type            = string
     default         = "vpc-82b24bfb"
-
 }
 
 variable "release_label" {
@@ -14,7 +13,6 @@ variable "applications" {
     type            = list
     default         = ["Spark"]
 }
-
 
 variable "path_to_ssh_key" {
     type            = string

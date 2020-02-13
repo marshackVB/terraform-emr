@@ -13,15 +13,16 @@
 wget --quiet https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/conda.sh \
     && /bin/bash ~/conda.sh -b -p $HOME/conda
 
+
 rm ~/conda.sh
 
 
-echo -e '\nexport PATH=$HOME/conda/bin:$PATH' >> $HOME/.bashrc && source $HOME/.bashrc
-
-# install packages
-conda install -y pandas ipython jupyter pyspark spark-nlp
-
 # set environment variables
+echo -e '\nexport PATH=$HOME/conda/bin:$PATH' >> ~/.bashrc
+echo -e "\nexport SPARK_HOME=/usr/lib/spark" >> ~/.bashrc
 echo -e "\nexport PYSPARK_PYTHON=/home/hadoop/conda/bin/python" >> ~/.bashrc
 echo "export PYSPARK_DRIVER_PYTHON=/home/hadoop/conda/bin/ipython" >> ~/.bashrc
 source ~/.bashrc
+
+# install packages
+pip install pandas ipython jupyter pyspark spark-nlp
