@@ -44,7 +44,6 @@ variable "worker_instance_ebs_size" {
     default = "40"
 }
 
-# Need to determine how to pass this variable to master_config.sh
 variable "jupyter_password" {
     description     = "password for Jupyter notebook"
     type            = string
