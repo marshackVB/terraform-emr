@@ -11,7 +11,7 @@ variable "release_label" {
 
 variable "applications" {
     type            = list
-    default         = ["Spark"]
+    default         = ["Spark", "Ganglia"]
 }
 
 variable "path_to_ssh_key" {
@@ -24,30 +24,9 @@ variable "subnet_id" {
     default         = "subnet-56f33d7a"
 }
 
-variable "instance_groups" {
-    type            = list
-    default = [
-        {
-            name            = "MasterInstanceGroup"
-            instance_role   = "MASTER"
-            instance_type   = "m3.xlarge"
-            instance_count  = "1"
-        },
-        {
-            name                            = "CoreInstanceGroup"
-            instance_role                   = "CORE"
-            instancetype                    = "m3.xlarge"
-            instance_count                  = "1"
-            ebs_root_volume_size            = "40"
-            core_instance_type              = "gp2"
-            volumes_per_instance            = 1
-            
-        
-        }
-    ]
+# Need to determine how to pass this variable to master_config.sh
+variable "jupyter_password" {
+    description     = "password for Jupyter notebook"
+    type            = string
+    default         = "mypassword"
 }
-
-
-
-
-

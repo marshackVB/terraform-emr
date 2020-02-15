@@ -19,10 +19,7 @@ rm ~/conda.sh
 
 # set environment variables
 echo -e '\nexport PATH=$HOME/conda/bin:$PATH' >> ~/.bashrc
-echo -e "\nexport SPARK_HOME=/usr/lib/spark" >> ~/.bashrc
-echo -e "\nexport PYSPARK_PYTHON=/home/hadoop/conda/bin/python" >> ~/.bashrc
-echo "export PYSPARK_DRIVER_PYTHON=/home/hadoop/conda/bin/ipython" >> ~/.bashrc
 source ~/.bashrc
 
 # install packages
-pip install pandas ipython jupyter pyspark spark-nlp
+pip install pandas ipython jupyterlab pyspark spark-nlp

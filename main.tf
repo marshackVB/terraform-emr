@@ -155,9 +155,34 @@ resource "aws_emr_cluster" "cluster" {
 
     service_role                            = aws_iam_role.emr_service_role.arn
 
+    configurations_json = <<EOF
+    [
+        {
+            "Classification": "hive-site",
+            "Properties": {
+                "hive.metastore.client.factory.class": "com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory"
+                }
+            },
+
+         {
+            "Classification": "spark-hive-site",
+            "Properties": {
+                "hive.metastore.client.factory.class": "com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory"
+                }
+            }
+        ]
+    EOF
+
+
     bootstrap_action {
-        path = "s3://bootstrapmlc/conda_bootstrap.sh"
+        path = "s3://bootstrapmlc/emr/conda_bootstrap.sh"
         name = "conda"
   }
+
+    bootstrap_action {
+        path = "s3://bootstrapmlc/emr/master_config.sh"
+        name = "runif"
+        args = ["instance.isMaster=true", var.jupyter_password]
+    }
 
 }
