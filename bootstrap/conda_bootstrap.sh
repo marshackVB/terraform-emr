@@ -18,7 +18,7 @@ rm ~/conda.sh
 
 
 # set environment variables
-echo -e '\nexport PATH=$HOME/conda/bin:$PATH' >> ~/.bashrc
+echo -e 'export PATH=$HOME/conda/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
 
 # install packages

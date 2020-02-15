@@ -1,10 +1,13 @@
 #!/bin/bash
 
 # Set Spark environment variabels 
-echo -e "\nexport SPARK_HOME=/usr/lib/spark" >> ~/.bashrc
-echo -e "\nexport PYSPARK_PYTHON=/home/hadoop/conda/bin/python" >> ~/.bashrc
-echo -e "\n#export PYSPARK_DRIVER_PYTHON=/home/hadoop/conda/bin/jupyter-lab" >> ~/.bashrc
-echo "export PYSPARK_DRIVER_PYTHON=/home/hadoop/conda/bin/ipython" >> ~/.bashrc
+echo -e "\nexport SPARK_HOME=/usr/lib/spark" >> $HOME/.bashrc
+echo -e "\nexport PYSPARK_PYTHON=/home/hadoop/conda/bin/python" >> $HOME/.bashrc
+
+echo -e "\nalias spark-jupyter='export PYSPARK_DRIVER_PYTHON=/home/hadoop/conda/bin/jupyter-lab; pyspark'" >> $HOME/.bashrc
+echo -e "\nalias spark-ipython='export PYSPARK_DRIVER_PYTHON=/home/hadoop/conda/bin/ipython; pyspark'" >> $HOME/.bashrc
+
+source $HOME/.bashrc
 
 
 # JupyterLab configuration
@@ -17,8 +20,8 @@ echo "export PYSPARK_DRIVER_PYTHON=/home/hadoop/conda/bin/ipython" >> ~/.bashrc
 # lsof -n -i | grep :8888
 # kill -9 <pid>
 
+JUPYTER_PASSWORD=${2:-"mypassword"}
 
-JUPYTER_PASSWORD=${1:-"mypassword"}
 HASHED_PASSWORD=$(python -c "from notebook.auth import passwd; print(passwd('$JUPYTER_PASSWORD'))")
 
 
