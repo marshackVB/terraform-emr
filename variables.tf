@@ -47,5 +47,5 @@ variable "worker_instance_ebs_size" {
 variable "jupyter_password" {
     description     = "password for Jupyter notebook"
     type            = string
-    default         = "var_mypassword"
+    default         = ""
 }
