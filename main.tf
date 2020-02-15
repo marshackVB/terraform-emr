@@ -137,17 +137,17 @@ resource "aws_emr_cluster" "cluster" {
 
     master_instance_group {
             name                            = "MasterInstanceGroup"
-            instance_type                   = "m3.xlarge"
+            instance_type                   = var.master_instance_type
             instance_count                  = "1"
     }
         
     core_instance_group {
             name                            = "CoreInstanceGroup"
-            instance_type                   = "m3.xlarge"
-            instance_count                  = "1"
+            instance_type                   = var.worker_instance_type
+            instance_count                  = var.worker_instance_count
             
             ebs_config {
-                size                        = "40"
+                size                        = var.worker_instance_ebs_size
                 type                        = "gp2"
                 volumes_per_instance        = 1
             }
