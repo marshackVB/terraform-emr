@@ -22,4 +22,4 @@ echo -e '\nexport PATH=$HOME/conda/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
 
 # install packages
-pip install pandas ipython jupyterlab pyspark spark-nlp
+eval "pip install $1"
