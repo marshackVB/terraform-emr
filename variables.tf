@@ -1,7 +1,7 @@
 
 variable "vpc_id" {
     type            = string
-    default         = "vpc-82b24bfb"
+    default         = null
 }
 
 variable "release_label" {
@@ -21,12 +21,17 @@ variable "path_to_ssh_key" {
 
 variable "subnet_id" {
     type            = string
-    default         = "subnet-56f33d7a"
+    default         = null
 }
 
 variable "master_instance_type" {
     type = string
     default = "m3.xlarge"
+}
+
+variable "master_instance_ebs_size" {
+    type = string
+    default = "40"
 }
 
 variable "worker_instance_type" {
@@ -42,6 +47,18 @@ variable "worker_instance_count" {
 variable "worker_instance_ebs_size" {
     type = string
     default = "40"
+}
+
+variable "pip_install" {
+    description = "Python packages to install on the cluster"
+    type        = string
+    default     = "pandas jupyter ipython jupyterlab pyspark"
+}
+
+variable "bootstrap_bucket" {
+    description  = "S3 bucket containing the bootsrap scripts"
+    type        = string
+    default     = null
 }
 
 variable "jupyter_password" {

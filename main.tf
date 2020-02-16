@@ -139,6 +139,12 @@ resource "aws_emr_cluster" "cluster" {
             name                            = "MasterInstanceGroup"
             instance_type                   = var.master_instance_type
             instance_count                  = "1"
+
+            ebs_config {
+                size                        = var.master_instance_ebs_size
+                type                        = "gp2"
+                volumes_per_instance        = 1
+            }
     }
         
     core_instance_group {
@@ -175,13 +181,13 @@ resource "aws_emr_cluster" "cluster" {
 
 
     bootstrap_action {
-        path = "s3://bootstrapmlc/emr/conda_bootstrap.sh"
+        path = "${trimsuffix(var.bootstrap_bucket, "/")}/conda_bootstrap.sh"
         name = "conda"
-        args = ["pandas ipython jupyterlab pyspark spark-nlp fuzzywuzzy"]
+        args = [var.pip_install]
   }
 
     bootstrap_action {
-        path = "s3://bootstrapmlc/emr/master_config.sh"
+        path = "${trimsuffix(var.bootstrap_bucket, "/")}/master_config.sh"
         name = "runif"
         args = ["instance.isMaster=true", var.jupyter_password]
     }
