@@ -177,7 +177,7 @@ resource "aws_emr_cluster" "cluster" {
     bootstrap_action {
         path = "s3://bootstrapmlc/emr/conda_bootstrap.sh"
         name = "conda"
-        args = ["pandas ipython jupyterlab pyspark spark-nlp fuzzywuzzy"]
+        args = ["jupyterlab pyspark"]
   }
 
     bootstrap_action {

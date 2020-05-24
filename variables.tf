@@ -1,7 +1,6 @@
 
 variable "vpc_id" {
     type            = string
-    default         = "vpc-82b24bfb"
 }
 
 variable "release_label" {
@@ -21,7 +20,6 @@ variable "path_to_ssh_key" {
 
 variable "subnet_id" {
     type            = string
-    default         = "subnet-56f33d7a"
 }
 
 variable "master_instance_type" {
